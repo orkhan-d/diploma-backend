@@ -1,5 +1,4 @@
 from pydantic_settings import BaseSettings
-from functools import lru_cache
 
 
 class Settings(BaseSettings):
@@ -8,6 +7,8 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
     POSTGRES_HOST: str
     POSTGRES_PORT: int
+    SUPABASE_JWT_SECRET: str
+    SUPABASE_PROJECT_ID: str
 
     @property
     def database_url(self) -> str:
