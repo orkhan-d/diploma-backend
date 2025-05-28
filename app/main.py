@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from aiogram import types, Bot
 
-from app.bots import dp
+from app.bots import get_dp
 
 app = FastAPI()
+dp = get_dp()
 
 
 @app.get("/ping")
