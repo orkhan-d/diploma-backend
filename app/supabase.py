@@ -10,7 +10,7 @@ if not os.path.exists("bots"):
     os.makedirs("bots")
 
 
-@aiocron.crontab('*/1 * * * *')
+@aiocron.crontab('*/15 * * * *')
 async def scheduled_task():
     response = (
         supabase.table("bots")
