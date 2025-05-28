@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
 
-class ShowPopupAction(BaseModel):
+class WordsCheckCondition(BaseModel):
     words: list[str]

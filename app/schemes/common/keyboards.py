@@ -9,7 +9,9 @@ class KeyboardButtonType(enum.Enum, str):
 
 
 class KeyboardButton(BaseModel):
-    value: str
+    text: str
+    callback_data: str | None = None
+    url: str | None = None
     type: KeyboardButtonType
 
 
