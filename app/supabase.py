@@ -25,7 +25,6 @@ async def scheduled_task():
             "token": token,
             "is_running": bot['is_running'],
             "blocks": bot['bot_blocks'],
-            "system_name": bot['bot_types']['system_name']
         }
         file_path = f"bots/{token}.json"
         with open(file_path, 'w') as f:
