@@ -14,7 +14,7 @@ if not os.path.exists("bots"):
 async def scheduled_task():
     response = (
         supabase.table("bots")
-        .select("token, is_running, bot_blocks(scheme, is_active), bot_types(system_name)")
+        .select("token, is_running, bot_blocks(scheme, is_active, block_types(system_name))")
         .execute()
     )
 
