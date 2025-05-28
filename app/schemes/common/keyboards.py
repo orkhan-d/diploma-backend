@@ -2,7 +2,7 @@ import enum
 from pydantic import BaseModel
 
 
-class KeyboardButtonType(enum.Enum, str):
+class KeyboardButtonType(str, enum.Enum):
     text = "text"
     callback = "callback"
     url = "url"
