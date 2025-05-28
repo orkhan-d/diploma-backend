@@ -15,13 +15,13 @@ async def handle_message(message: types.Message):
         bot_token = message.bot.token
         # get json file from bots folder like bots/bot_token.json
         scheme = json.load(open(os.path.join('bots', f'{bot_token}.json'), 'r'))
-        blocks = scheme['blocks']
+        blocks: list[dict[str, any]] = scheme['blocks']
 
         for block in blocks:
             if block['block_types']['system_name'] == 'new_message':
                 block_scheme = block.get('scheme', {})
-                conditions = block_scheme.get('conditions', [])
-                actions = block_scheme.get('actions', [])
+                conditions: list[dict[str, any]] = block_scheme.get('conditions', [])
+                actions: list[dict[str, any]] = block_scheme.get('actions', [])
 
                 if handle_conditions(conditions, message=message):
                     await handle_actions(actions, message.bot, message=message)

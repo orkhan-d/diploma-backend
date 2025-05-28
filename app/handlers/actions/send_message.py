@@ -51,6 +51,5 @@ async def handle(
     await bot.send_message(
         chat_id=chat_id,
         text=data.text,
-        disable_web_page_preview=data.disable_web_page_preview,
         reply_markup=reply_markup
     )
