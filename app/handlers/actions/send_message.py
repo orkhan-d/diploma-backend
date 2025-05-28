@@ -4,7 +4,7 @@ from app.schemes.actions.send_message import SendMessageAction, Keyboard
 
 
 def generate_keyboard(keyboard: Keyboard, is_inline: bool) -> types.ReplyKeyboardMarkup | types.InlineKeyboardMarkup:
-    buttons = []
+    buttons: list[list[types.InlineKeyboardButton | types.KeyboardButton]] = []
     for row in keyboard:
         buttons_row = []
         for btn in row:
@@ -21,10 +21,7 @@ def generate_keyboard(keyboard: Keyboard, is_inline: bool) -> types.ReplyKeyboar
 
     if is_inline:
         return types.InlineKeyboardMarkup(
-            inline_keyboard=[
-                [types.InlineKeyboardButton(text=btn.text, callback_data=btn.callback_data) for btn in row]
-                for row in keyboard
-            ]
+            inline_keyboard=buttons
         )
     else:
         return types.ReplyKeyboardMarkup(
