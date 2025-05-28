@@ -8,6 +8,7 @@ def generate_keyboard(keyboard: Keyboard, is_inline: bool) -> types.ReplyKeyboar
     for row in keyboard:
         buttons_row = []
         for btn in row:
+            print(btn.model_dump_json(), flush=True)
             if is_inline:
                 buttons_row.append(types.InlineKeyboardButton(
                     text=btn.text,
