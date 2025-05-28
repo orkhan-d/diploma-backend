@@ -23,7 +23,7 @@ jobs:
     - name: Deploy with rsync
       uses: burnett01/rsync-deployments@5.2
       with:
-        switches: -avzr --exclude=".git .github .env"
+        switches: -avzr --exclude=".git .github .env bots"
         path: .
         remote_path: ${{ secrets.DEPLOY_PATH }}
         remote_host: ${{ secrets.VPS_HOST }}
