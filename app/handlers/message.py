@@ -6,6 +6,8 @@ import os
 from app.handlers.actions import handle_actions
 from app.handlers.conditions import handle_conditions
 
+import traceback
+
 router = Router()
 
 
@@ -37,3 +39,4 @@ async def handle_message(message: types.Message):
                     return
     except Exception as e:
         print(e, flush=True)
+        traceback.print_exc()
