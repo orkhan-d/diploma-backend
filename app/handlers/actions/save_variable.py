@@ -13,7 +13,7 @@ async def handle(
     user_id = message.from_user.id if message else query.from_user.id
     value = ''
 
-    match data.value:
+    match data.variable_value:
         case 'message_text':
             value = message.text
         case 'sender_name':
