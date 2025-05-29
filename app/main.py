@@ -22,3 +22,4 @@ async def bot_webhook(token: str, update: dict):
         }
     )
     await dp.feed_update(bot, update)
+    return {"ok": True, "message": "Message handled successfully"}

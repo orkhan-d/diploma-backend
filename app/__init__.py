@@ -1,4 +1,4 @@
 from app import main
 from app import bots
 from app import handlers
-from app import supabase
+from app import cron

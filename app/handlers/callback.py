@@ -9,17 +9,10 @@ from app.handlers.conditions import handle_conditions
 router = Router()
 
 
-@router.pre_checkout_query()
-async def on_pre_checkout_query(
-    pre_checkout_query: types.PreCheckoutQuery,
-):
-    await pre_checkout_query.answer(ok=True)
-
-
-@router.message()
-async def handle_message(message: types.Message):
+@router.callback_query()
+async def handle_callback_query(query: types.CallbackQuery):
     try:
-        bot_token = message.bot.token
+        bot_token = query.bot.token
         # get json file from bots folder like bots/bot_token.json
         scheme = json.load(open(os.path.join('bots', f'{bot_token}.json'), 'r'))
         blocks: list[dict[str, any]] = scheme['blocks']
@@ -27,14 +20,13 @@ async def handle_message(message: types.Message):
         for block in blocks:
             if not block['is_active']:
                 continue
-            if block['block_types']['system_name'] == 'new_message':
+            if block['block_types']['system_name'] == 'new_callback':
                 block_scheme = block.get('scheme', {})
                 conditions: list[dict[str, any]] = block_scheme.get('conditions', [])
                 actions: list[dict[str, any]] = block_scheme.get('actions', [])
 
-                if await handle_conditions(conditions, message=message):
-                    await handle_actions(actions, message.bot, message=message)
+                if await handle_conditions(conditions, query=query):
+                    await handle_actions(actions, query.bot, query=query)
                     return
     except Exception as e:
         print(e, flush=True)
-    return {"ok": True, "message": "Message handled successfully"}
