@@ -37,4 +37,3 @@ async def handle_message(message: types.Message):
                     return
     except Exception as e:
         print(e, flush=True)
-    return {"ok": True, "message": "Message handled successfully"}

@@ -9,7 +9,7 @@ async def handle(
     bot: Bot,
     data: SetState
 ) -> bool:
-    res = await supabase.table('states').select(
+    res = supabase.table('states').select(
         '*'
     ).eq(
         'tg_user_id', message.from_user.id
@@ -17,7 +17,7 @@ async def handle(
         'bot_id', bot.id
     ).execute()
     if res.count:
-        await supabase.table('states').update(
+        supabase.table('states').update(
             {'value': data.variable_name}
         ).eq(
             'tg_user_id', message.from_user.id
@@ -25,7 +25,7 @@ async def handle(
             'bot_id', bot.id
         ).execute()
     else:
-        await supabase.table('states').insert({
+        supabase.table('states').insert({
             'tg_user_id': message.from_user.id,
             'bot_id': bot.id,
             'value': data.variable_name

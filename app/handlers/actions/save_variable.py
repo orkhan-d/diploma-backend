@@ -19,7 +19,7 @@ async def handle(
         case 'sender_name':
             value = message.from_user.full_name if message else query.from_user.full_name
 
-    await supabase.from_('variables').insert({
+    supabase.from_('variables').insert({
         'name': f'{user_id}-{data.name}',
         'value': value,
         'bot_id': bot.token
