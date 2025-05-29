@@ -22,5 +22,5 @@ async def handle(
     supabase.from_('variables').insert({
         'name': f'{user_id}-{data.variable_name}',
         'value': value,
-        'bot_id': bot.token
+        'bot_id': bot.id
     }).execute()
