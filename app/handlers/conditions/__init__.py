@@ -62,6 +62,6 @@ async def handle_conditions(
                     query=query,
                     data=data
                 )
-        success = res != condition['negative']
+        success = res != condition.get('negative', False)
 
     return success
