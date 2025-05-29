@@ -10,7 +10,7 @@ async def handle(
         query: types.CallbackQuery | None = None,
         data: CheckState,
 ) -> bool:
-    res = await (supabase.from_("states")
+    res = (supabase.from_("states")
                  .select('*')
                  .eq('tg_user_id', message.from_user.id)
                  .eq('bot_id', message.bot.id)

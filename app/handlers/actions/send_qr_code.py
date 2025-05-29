@@ -20,7 +20,7 @@ async def handle(
     for variable in data.variables:
         value = variable.value
         if re.match(r'\$\{.*\}', variable.value):
-            value = await (supabase.table('variables').select('value')
+            value = (supabase.table('variables').select('value')
                            .eq('name', f'{user_id}-{variable.value[2:-1]}').single())
 
         vars[variable.name] = value['value']
