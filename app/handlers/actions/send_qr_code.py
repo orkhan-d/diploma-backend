@@ -9,10 +9,10 @@ import qrcode
 
 
 async def handle(
-    message: types.Message | None,
-    query: types.CallbackQuery | None,
-    bot: Bot,
-    data: SendQrCode
+        message: types.Message | None,
+        query: types.CallbackQuery | None,
+        bot: Bot,
+        data: SendQrCode
 ) -> bool:
     vars = {}
     user_id = message.from_user.id if message else query.from_user.id
@@ -21,7 +21,7 @@ async def handle(
         value = variable.value
         if re.match(r'\$\{.*\}', variable.value):
             value = (supabase.table('variables').select('value')
-                           .eq('name', f'{user_id}-{variable.value[2:-1]}').single())
+                     .eq('name', f'{user_id}-{variable.value[2:-1]}').single())
 
         vars[variable.name] = value['value']
 

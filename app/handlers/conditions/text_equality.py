@@ -10,6 +10,8 @@ async def handle(
     query: types.CallbackQuery | None = None,
     data: TextEqualityCondition,
 ) -> bool:
+    if message.text is None:
+        return False
     if data.case_sensitive:
         return message.text == data.text
     else:
