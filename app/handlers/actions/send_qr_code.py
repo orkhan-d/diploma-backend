@@ -21,9 +21,9 @@ async def handle(
         value = variable.value
         if re.match(r'\$\{.*\}', variable.value):
             value = (supabase.table('variables').select('value')
-                     .eq('name', f'{user_id}-{variable.value[2:-1]}').single())
+                     .eq('name', f'{user_id}-{variable.value[2:-1]}').single()).data['value']
 
-        vars[variable.name] = value['value']
+        vars[variable.name] = value
 
     img = qrcode.make(json.dumps(vars))
 
