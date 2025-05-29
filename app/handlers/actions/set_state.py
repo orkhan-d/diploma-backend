@@ -16,7 +16,7 @@ async def handle(
     ).eq(
         'bot_id', bot.id
     ).execute()
-    if res.count:
+    if len(res.data):
         supabase.table('states').update(
             {'value': data.variable_name}
         ).eq(

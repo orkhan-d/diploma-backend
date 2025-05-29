@@ -11,9 +11,9 @@ async def handle(
         data: CheckState,
 ) -> bool:
     res = (supabase.from_("states")
-                 .select('*')
-                 .eq('tg_user_id', message.from_user.id)
-                 .eq('bot_id', message.bot.id)
-                 .eq('value', data.state_name)
-                 .execute())
-    return res.count > 0
+           .select('*')
+           .eq('tg_user_id', message.from_user.id)
+           .eq('bot_id', message.bot.id)
+           .eq('value', data.state_name)
+           .execute())
+    return len(res.data) > 0
